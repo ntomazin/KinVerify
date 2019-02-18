@@ -52,7 +52,7 @@ class Settings:
         variable = StringVar(self.root)
         variable.set(n_test_data)  # default value
         self.option_menu = OptionMenu(self.root, variable, "  5", "10", "20", "50")
-        self.option_menu.place(x=200, y=150)
+        self.option_menu.place(x=220, y=150)
 
         # about button
         self.about_btn = tkinter.Button(self.f1, text='About', bg='black', fg='white', font=("Calibri", 18),
@@ -101,11 +101,3 @@ class Settings:
                                        activebackground='white', activeforeground='black',
                                        command=lambda: (self.f2.destroy(), self.main_frame()))
         self.back_btn.place(x=200, y=300)
-
-
-
-
-
-
-
-

@@ -22,7 +22,7 @@ meta_names = ['fd_pairs.mat', 'fs_pairs.mat', 'md_pairs.mat', 'ms_pairs.mat']
 dirs = ['father-dau/', 'father-son/', 'mother-dau/', 'mother-son/']
 coef1 = 0.8  # [0->0.8] train data
 coef2 = 0.9  # [0.8 -> 0.9] validation data and [0.9->1] test data
-EPOCH_NUM = 50
+EPOCH_NUM = 10
 
 
 
@@ -60,7 +60,7 @@ def create_model():
     print(model.summary())
     return model
 
-
+#with keras.device('/GPU:0'):
 # ----Read metadata from .mat files-------
 meta_data = []
 for name in meta_names:
@@ -126,11 +126,11 @@ Y_test = results[index2:]
 
 # -----Train network------
 model = create_model()
-#model.fit(X_train, Y_train, batch_size=64, epochs=EPOCH_NUM, validation_data=(X_valid, Y_valid), shuffle=True)
-#model.save('modelSaved_eph'+str(EPOCH_NUM)+'.dat')
+model.fit(X_train, Y_train, batch_size=64, epochs=EPOCH_NUM, validation_data=(X_valid, Y_valid), shuffle=True)
+model.save('modelSaved_eph'+str(EPOCH_NUM)+'.dat')
 
 # -------Load model-------
-model = keras.models.load_model('/home/piki/Desktop/faks/Computer_vision/KinFaceW-I_rezultati/src/modelSaved_eph'+str(EPOCH_NUM)+'.dat')
+#model = keras.models.load_model('/home/piki/Desktop/faks/Computer_vision/KinFaceW-I_rezultati/src/modelSaved_eph'+str(EPOCH_NUM)+'.dat')
 #model = keras.models.load_model('/home/piki/Desktop/faks/Computer_vision/KinFaceW-I_rezultati/src/modelSaved_eph50.dat')
 
 
@@ -155,13 +155,5 @@ for i in range(n_test_data):
 
 # -------GUI--------
 print('Accuracy: ' + str(correct_cnt/n_test_data))
+print()
 Program(images_path[index2: index2 + n_test_data], [x[1] for x in Y_test[:n_test_data]], comp_results, correct_cnt/n_test_data)
-
-# dodat gumb
-#
-#
-#
-#
-#
-#
-#
