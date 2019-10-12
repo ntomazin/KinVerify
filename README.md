@@ -1,5 +1,5 @@
 # KinVerify
-Program for recognition of kin related people
+Program for recognition of kin related people using CNN
 
 
 There are no saved models because they are too big to upload on GitHub, so first you have to create
